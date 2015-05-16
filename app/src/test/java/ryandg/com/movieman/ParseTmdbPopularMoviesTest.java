@@ -12,15 +12,7 @@ import org.junit.Test;
  *
  */
 @SmallTest
-public class SimpleTest {
+public class ParseTmdbPopularMoviesTest {
 
-    private String expected;
 
-    @Before public void init() {
-        expected = "Hello";
-    }
-
-    @Test public void equalsHello(){
-        Assert.assertEquals(expected,"Hello");
-    }
 }
