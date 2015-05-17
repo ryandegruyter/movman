@@ -16,8 +16,8 @@ public class TmdbMovieParser {
     public TmdbMovieParser() {
     }
 
-    public void parse(String tmdbJsonResponse) throws IOException {
-        final StringReader stringReader = new StringReader(tmdbJsonResponse);
+    public void parse(String json) throws IOException {
+        final StringReader stringReader = new StringReader(json);
         final JsonReader jsonReader = new JsonReader(stringReader);
         this.movies = new ArrayList<>();
 
