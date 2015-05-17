@@ -1,4 +1,4 @@
-package ryandg.com.movieman;
+package com.ryandg.movieman;
 
 import android.app.Application;
 
@@ -12,8 +12,6 @@ public class MovieManApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-
-        int x = 2;
         Logger.init(MovieManApplication.class.getSimpleName());
     }
 }
