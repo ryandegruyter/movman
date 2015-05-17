@@ -1,4 +1,4 @@
-package ryandg.com.movieman;
+package com.ryandg.movieman;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
