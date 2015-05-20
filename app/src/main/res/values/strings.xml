@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">MovieMan</string>
+    <string name="hello_world">Hello World!</string>
+    <string name="news">News</string>
+    <string name="drawer_open">open</string>
+    <string name="drawer_close">close</string>
 </resources>

@@ -1,8 +1,23 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="ryandg.ryandg.movieman">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="ryandg.ryandg.movieman">
 
-    <application android:allowBackup="true" android:label="@string/app_name"
-        android:icon="@mipmap/ic_launcher" android:theme="@style/AppTheme">
 
+    <application
+        android:name="com.ryandg.movieman.MovieManApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme">
+
+        <activity android:name="com.ryandg.movieman.MainActivity">
+            <intent-filter>
+                <action android:name="ANDROID.INTENT.ACTION.MAIN" />
+                <category android:name="ANDROID.INTENT.CATEGORY.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.ryandg.movieman.NewsActivity"
+            android:parentActivityName="com.ryandg.movieman.MainActivity" />
     </application>
 
 </manifest>
