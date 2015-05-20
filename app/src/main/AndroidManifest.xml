@@ -9,15 +9,15 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
 
-        <activity android:name="com.ryandg.movieman.MainActivity">
+        <activity android:name="com.ryandg.movieman.ui.MainActivity">
             <intent-filter>
                 <action android:name="ANDROID.INTENT.ACTION.MAIN" />
                 <category android:name="ANDROID.INTENT.CATEGORY.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name="com.ryandg.movieman.NewsActivity"
-            android:parentActivityName="com.ryandg.movieman.MainActivity" />
+            android:name="com.ryandg.movieman.ui.NewsActivity"
+            android:parentActivityName="com.ryandg.movieman.ui.MainActivity" />
     </application>
 
 </manifest>

@@ -6,29 +6,35 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.ryandg.movieman.MainActivity">
+        tools:context="com.ryandg.movieman.ui.MainActivity"
+        android:orientation="vertical">
 
         <include
             android:id="@+id/main_app_bar"
             layout="@layout/main_bar" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/main_app_bar"
-            android:text="@string/hello_world" />
-    </RelativeLayout>
+        <com.ryandg.widget.SlidingTabLayout
+            android:id="@+id/main_tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <android.support.v4.view.ViewPager
+            android:layout_weight="1"
+            android:id="@+id/main_pager"
+            android:layout_width="match_parent"
+            android:layout_height="0dp" />
+    </LinearLayout>
 
     <fragment
         android:id="@+id/drawer_fragment"
-        android:name="com.ryandg.movieman.DrawerFragment"
+        android:name="com.ryandg.movieman.ui.DrawerFragment"
         android:layout_width="@dimen/drawer_width"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:layout="@layout/fragment_drawer"
-        tools:layout="@layout/fragment_drawer"></fragment>
+        tools:layout="@layout/fragment_drawer" />
 </android.support.v4.widget.DrawerLayout>

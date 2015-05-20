@@ -1,4 +1,4 @@
-package com.ryandg.movieman;
+package com.ryandg.movieman.ui;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

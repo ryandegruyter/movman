@@ -4,4 +4,7 @@
     <string name="news">News</string>
     <string name="drawer_open">open</string>
     <string name="drawer_close">close</string>
+    <string name="strings">Settings</string>
+    <string name="popular_movies">Popular Movies</string>
+    <string name="new_movies">Newest movies</string>
 </resources>
