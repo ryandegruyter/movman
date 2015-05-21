@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        tools:src="@android:drawable/ic_menu_camera"
+        android:id="@+id/movieThumb"
+        android:layout_width="@dimen/movie_thumb_width"
+        android:layout_height="@dimen/movie_thumb_height"
+        android:layout_centerVertical="true" />
+
+    <TextView
+        tools:text="Fight Club"
+        android:id="@+id/movieTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/movieThumb"
+        android:layout_marginLeft="56dp"
+        android:alpha="0.87"
+        android:gravity="right"
+        android:padding="@dimen/size_half_byte"
+        android:textSize="@dimen/size_text_primary" />
+
+    <TextView
+        tools:text="27/04/1987"
+        android:id="@+id/movieReleaseDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/movieTitle"
+        android:alpha="0.87"
+        android:padding="@dimen/size_half_byte"
+        android:textSize="@dimen/size_text_secondary" />
+
+    <RatingBar
+        tools:rating="4"
+        android:id="@+id/movieViewerScore"
+        style="@android:style/Widget.Holo.RatingBar.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/movieReleaseDate"
+        android:isIndicator="true"
+        android:max="5"
+        android:numStars="0" />
+</RelativeLayout>
