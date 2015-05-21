@@ -22,8 +22,15 @@ public class VolleySingleton {
         mCtx = context;
         mRequestQueue = getRequestQueue();
 
-        int size = (int) (Runtime.getRuntime().maxMemory() / 1024 / 8);
-        ImageLoader.ImageCache imageCache = new ImageCache(size);
+        // Get max available VM memory, exceeding this amount will throw an
+        // OutOfMemory exception. Stored in kilobytes as LruCache takes an
+        // int in its constructor.
+        final int maxMemory = (int) (Runtime.getRuntime().maxMemory() / 1024);
+
+        // Use 1/8th of the available memory for this memory cache.
+        final int cacheSize = maxMemory / 8;
+
+        ImageLoader.ImageCache imageCache = new ImageCache(cacheSize);
         mImageLoader = new ImageLoader(mRequestQueue, imageCache);
     }
 

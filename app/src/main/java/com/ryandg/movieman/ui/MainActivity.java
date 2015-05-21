@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.action_settings:
+           case R.id.action_settings:
                 //todo go to settings activity
                 break;
             case R.id.action_news:
