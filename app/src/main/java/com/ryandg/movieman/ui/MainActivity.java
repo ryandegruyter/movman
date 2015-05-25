@@ -1,12 +1,14 @@
 package com.ryandg.movieman.ui;
 
 import android.content.Intent;
-import android.os.Bundle;
+import android.os.*;
+import android.os.Process;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -23,20 +25,21 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAB_TITLE_POPULAR = "popular_movies_tab";
     private static final String TAB_TITLE_NEWEST = "newest_movies_tab";
+    private static final String TAG = MainActivity.class.getSimpleName();
     private Toolbar mToolbar;
     private ViewPager mPager;
     private SlidingTabLayout mTabsLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.i(TAG, "MainActivity onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
 
-        Logger.d("onCreate", savedInstanceState);
-
         initToolbar();
         initDrawerLayout();
-        initPagerAndTabs();
+//        initPagerAndTabs();
+//        launchHandlerTest();
     }
 
     private void initPagerAndTabs() {
@@ -59,7 +62,6 @@ public class MainActivity extends AppCompatActivity {
         drawerFragment.init(drawerLayout, mToolbar);
     }
 
-
     private void initToolbar() {
         mToolbar = (Toolbar) findViewById(R.id.main_app_bar);
         setSupportActionBar(mToolbar);
@@ -74,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-           case R.id.action_settings:
+            case R.id.action_settings:
                 //todo go to settings activity
                 break;
             case R.id.action_news:
@@ -82,6 +84,11 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
     }
 
     public TabFragment[] getFragments() {

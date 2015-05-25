@@ -6,4 +6,7 @@ package com.ryandg.tmdb;
 public class TmdbUtils {
     public static final String POPULAR_MOVIES = "https://api.themoviedb.org/3/movie/popular?api_key=%s";
 
+    public static final String getImgPath(TmdbImageSize size, String imgPath) {
+        return TmdbConfiguration.secureBaseUrl + size.getSize() + imgPath;
+    }
 }
