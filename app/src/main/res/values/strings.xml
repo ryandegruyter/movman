@@ -7,4 +7,10 @@
     <string name="strings">Settings</string>
     <string name="popular_movies">Popular Movies</string>
     <string name="new_movies">Newest movies</string>
+    <string name="login_info">You have to be logged to use MovieMan</string>
+    <string name="login">Login</string>
+    <string name="hintLoginPassword">password</string>
+    <string name="hintLoginName">Username</string>
+    <string name="no_account_info">No account yet?</string>
+    <string name="signup">Signup</string>
 </resources>

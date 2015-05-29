@@ -16,8 +16,14 @@ public class MovieManApplication extends Application {
     public static final Boolean DEBUG_MODE = true;
     private static final String TAG = MovieManApplication.class.getSimpleName();
 
+
     @Override
     public void onCreate() {
         super.onCreate();
+    }
+
+    public static boolean login(String userName, String passWord) {
+
+        return false;
     }
 }
