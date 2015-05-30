@@ -83,9 +83,6 @@ public class MainActivity extends AppCompatActivity {
                 // todo show dialog
                 onActionLogOut();
                 break;
-            case R.id.action_news:
-                startActivity(new Intent(this, NewsActivity.class));
-                break;
         }
         return super.onOptionsItemSelected(item);
     }

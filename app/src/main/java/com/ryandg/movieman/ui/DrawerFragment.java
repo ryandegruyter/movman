@@ -5,13 +5,17 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.orhanobut.logger.Logger;
 import com.ryandg.PrefUtils;
+import com.ryandg.movieman.adapters.DrawerMenuAdapter;
 
 import ryandg.ryandg.movieman.R;
 
@@ -20,20 +24,14 @@ import ryandg.ryandg.movieman.R;
  */
 public class DrawerFragment extends Fragment {
 
-//    pref key om te weten of de
-    private static final String KEY_AWARE_OF_DRAWR = "key_aware_of_drawer";
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
-
-
-    // check if the user is aware of the drawer and knows of its existence
     private boolean mUserAwareOfDrawer;
-
-
-    //check if the fragment is started for the first or recreated
     private boolean mFromSavedInstance;
     private View mContainer;
 
+    private RecyclerView mDrawerMenu;
+    private TextView mTitleUserName;
 
     public DrawerFragment() {
 
@@ -52,6 +50,12 @@ public class DrawerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_drawer, container, false);
 
+        mTitleUserName = (TextView) view.findViewById(R.id.title_user_name);
+        mTitleUserName.setText(PrefUtils.getCurrentUser(getActivity()));
+
+        mDrawerMenu = (RecyclerView) view.findViewById(R.id.drawer_links_list);
+        mDrawerMenu.setAdapter(new DrawerMenuAdapter(getActivity()));
+        mDrawerMenu.setLayoutManager(new LinearLayoutManager(getActivity()));
         return view;
     }
 

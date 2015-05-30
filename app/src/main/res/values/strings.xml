@@ -15,4 +15,14 @@
     <string name="no_account_info">No account yet?</string>
     <string name="signup">Signup</string>
     <string name="logout">Logout</string>
+
+    <string name="recent_movies">Recent Movies</string>
+    <string name="search_movies">Search Movies</string>
+    <string name="profile">Profile</string>
+
+    <string-array name="drawer_menu_items">
+        <item>@string/recent_movies</item>
+        <item>@string/search_movies</item>
+        <item>@string/profile</item>
+    </string-array>
 </resources>

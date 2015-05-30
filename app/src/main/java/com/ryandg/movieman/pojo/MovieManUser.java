@@ -5,14 +5,23 @@ package com.ryandg.movieman.pojo;
  */
 public class MovieManUser {
     private String userName;
-    private String passWord;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    private int id;
 
     public MovieManUser() {
     }
 
-    public MovieManUser(String userName, String passWord) {
+    public MovieManUser(String userName, int id) {
         this.userName = userName;
-        this.passWord = passWord;
+        this.id = id;
     }
 
     public String getUserName() {
@@ -21,13 +30,5 @@ public class MovieManUser {
 
     public void setUserName(String userName) {
         this.userName = userName;
-    }
-
-    public String getPassWord() {
-        return passWord;
-    }
-
-    public void setPassWord(String passWord) {
-        this.passWord = passWord;
     }
 }

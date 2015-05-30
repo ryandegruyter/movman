@@ -7,11 +7,4 @@
         android:orderInCategory="100"
         android:icon="@drawable/ic_action_logout"
         app:showAsAction="ifRoom"/>
-
-    <item
-        android:title="@string/news"
-        android:id="@+id/action_news"
-        android:orderInCategory="99"
-        app:showAsAction="ifRoom"
-        android:icon="@android:drawable/ic_dialog_info" />
 </menu>

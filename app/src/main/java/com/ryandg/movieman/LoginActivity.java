@@ -1,9 +1,12 @@
 package com.ryandg.movieman;
 
+import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.BaseColumns;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -13,6 +16,8 @@ import android.widget.Toast;
 
 import com.ryandg.PrefUtils;
 import com.ryandg.android.ViewUtils;
+import com.ryandg.movieman.data.MovieManContract;
+import com.ryandg.movieman.pojo.MovieManUser;
 import com.ryandg.movieman.ui.MainActivity;
 import com.ryandg.movieman.validation.EditTextValidator;
 import com.ryandg.movieman.validation.InputValidator;
@@ -25,6 +30,8 @@ import com.ryandg.movieman.validation.rules.RuleList;
 import com.ryandg.movieman.validation.rules.UserExists;
 
 import ryandg.ryandg.movieman.R;
+
+import static com.ryandg.movieman.data.MovieManContract.MovieManUser.*;
 
 /**
  * Created by Ryan De Gruyter on 17/05/2015.
@@ -89,7 +96,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onIsValidated() {
         PrefUtils.markUserLoggedIn(true, this);
+        PrefUtils.createSession(this, getUser(mInputName.getText().toString()));
         launchMainActivity();
+    }
+
+    private MovieManUser getUser(String user) {
+        final Cursor query = getContentResolver().query(CONTENT_URI, null, Columns.COL_USERNAME + " = '" + user + "'", null, null);
+        query.moveToFirst();
+        int id = query.getInt(query.getColumnIndex(BaseColumns._ID));
+        final MovieManUser movieManUser = new MovieManUser(user, id);
+        return movieManUser;
     }
 
     private void launchMainActivity() {

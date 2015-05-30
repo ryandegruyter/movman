@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="?android:attr/selectableItemBackground"
+    android:layout_height="match_parent">
+
+    <ImageView
+        tools:src="@drawable/ic_film"
+        android:id="@+id/ic_drawer_menu_row"
+        android:layout_centerVertical="true"
+        android:paddingLeft="16dp"
+        android:layout_width="48dp"
+        android:layout_height="48dp" />
+
+    <TextView
+        android:id="@+id/drawer_menu_row_text"
+        tools:text="Movies"
+        android:textColor="@color/primary"
+        android:layout_centerVertical="true"
+        android:textSize="16sp"
+        android:paddingLeft="72dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</RelativeLayout>

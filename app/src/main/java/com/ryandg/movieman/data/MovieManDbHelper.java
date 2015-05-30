@@ -3,6 +3,7 @@ package com.ryandg.movieman.data;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
@@ -10,6 +11,7 @@ import android.provider.BaseColumns;
 import com.ryandg.DateUtils;
 import com.ryandg.movieman.account.AuthenticationException;
 import com.ryandg.movieman.data.MovieManContract.MovieManUser.Columns;
+import com.ryandg.movieman.pojo.MovieManUser;
 import com.ryandg.security.PasswordHash;
 
 import java.security.NoSuchAlgorithmException;
@@ -75,6 +77,21 @@ public class MovieManDbHelper extends SQLiteOpenHelper {
         );
 
         return query.moveToFirst();
+    }
+
+    public MovieManUser getUserByName(String userName) {
+        final Cursor query = getReadableDatabase().query(
+                MovieManContract.MovieManUser.TABLE_NAME,
+                null,
+                null, null, null, null, null
+        );
+
+        if (query.moveToFirst()) {
+            final String qryUserName = query.getString(query.getColumnIndex(Columns.COL_USERNAME));
+            final int qryUserId = query.getInt(query.getColumnIndex(BaseColumns._ID));
+            return new MovieManUser(qryUserName, qryUserId);
+        }
+        throw new SQLException("Couldnt find user");
     }
 
     public static ContentValues createUser(String userName, String passWord) {

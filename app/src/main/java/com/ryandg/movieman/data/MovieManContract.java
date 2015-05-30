@@ -25,7 +25,7 @@ public class MovieManContract {
 
         public static final String TABLE_NAME = PATH_USER;
 
-        interface Columns {
+        public interface Columns {
             String COL_USERNAME = "username";
             String COL_PASSWORD = "password";
             String COL_DATE_CREATED = "date_created";
