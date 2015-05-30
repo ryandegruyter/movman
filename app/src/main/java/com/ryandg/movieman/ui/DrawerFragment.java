@@ -17,8 +17,6 @@ import ryandg.ryandg.movieman.R;
 
 /**
  * Created by Ryan on 19/05/2015.
- * We gebruiken een fragment voor de drawer navigatie omdat de Material Design spec
- * vraagt om de Drawer heel de hoogte in te nemen en over de Actionbar te tonen.
  */
 public class DrawerFragment extends Fragment {
 
@@ -34,6 +32,7 @@ public class DrawerFragment extends Fragment {
 
     //check if the fragment is started for the first or recreated
     private boolean mFromSavedInstance;
+    private View mContainer;
 
 
     public DrawerFragment() {
@@ -45,11 +44,7 @@ public class DrawerFragment extends Fragment {
         super.onCreate(savedInstanceState);
         mUserAwareOfDrawer = PrefUtils.isUserAwareOfDrawer(getActivity());
 
-        if (savedInstanceState != null) {
-            mFromSavedInstance = true;
-        } else {
-            mFromSavedInstance = false;
-        }
+        mFromSavedInstance = savedInstanceState != null;
     }
 
     @Nullable
@@ -61,7 +56,7 @@ public class DrawerFragment extends Fragment {
     }
 
     public void init(DrawerLayout drawerLayout, Toolbar toolbar) {
-        
+        mContainer = getActivity().findViewById(R.id.drawer_fragment);
         mDrawerLayout = drawerLayout;
         mDrawerToggle = new ActionBarDrawerToggle(getActivity(), drawerLayout, toolbar, R.string.drawer_open, R.string.drawer_close) {
             @Override
@@ -79,17 +74,14 @@ public class DrawerFragment extends Fragment {
             }
         };
 
-        if (!mUserAwareOfDrawer && mFromSavedInstance) {
-            View drawerView = getActivity().findViewById(R.id.drawer_fragment);
-            mDrawerLayout.openDrawer(drawerView);
-        }
-
-        Logger.d("init drawer Aware: %s, FromSaveInstance: %s", mUserAwareOfDrawer, mFromSavedInstance);
         mDrawerLayout.setDrawerListener(mDrawerToggle);
         mDrawerLayout.post(new Runnable() {
             @Override
             public void run() {
                 mDrawerToggle.syncState();
+                if (!mUserAwareOfDrawer && !mFromSavedInstance) {
+                    mDrawerLayout.openDrawer(mContainer);
+                }
             }
         });
     }

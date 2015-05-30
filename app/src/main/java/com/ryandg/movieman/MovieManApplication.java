@@ -6,6 +6,7 @@ import android.os.Debug;
 import android.util.Log;
 
 import com.orhanobut.logger.Logger;
+import com.ryandg.PrefUtils;
 import com.ryandg.android.ConnectionUtils;
 import com.squareup.leakcanary.LeakCanary;
 
@@ -22,6 +23,8 @@ public class MovieManApplication extends Application {
     public void onCreate() {
         super.onCreate();
         LeakCanary.install(this);
+
+        PrefUtils.setUserAwareOfDrawer(this,false);
     }
 
 }
