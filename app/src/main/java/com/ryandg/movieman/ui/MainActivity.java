@@ -3,6 +3,7 @@ package com.ryandg.movieman.ui;
 import android.content.Intent;
 import android.os.*;
 import android.os.Process;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -13,7 +14,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.orhanobut.logger.Logger;
+import com.ryandg.PrefUtils;
 import com.ryandg.app.TabFragment;
+import com.ryandg.movieman.LoginActivity;
 import com.ryandg.widget.SlidingTabLayout;
 
 import ryandg.ryandg.movieman.R;
@@ -76,14 +79,22 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.action_settings:
-                //todo go to settings activity
+            case R.id.action_logout:
+                // todo show dialog
+                onActionLogOut();
                 break;
             case R.id.action_news:
                 startActivity(new Intent(this, NewsActivity.class));
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void onActionLogOut() {
+        PrefUtils.markUserLoggedIn(false, this);
+        Intent goToLogin = new Intent(this, LoginActivity.class);
+        goToLogin.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(goToLogin);
     }
 
     @Override

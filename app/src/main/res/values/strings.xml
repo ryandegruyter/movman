@@ -14,4 +14,5 @@
     <string name="hintLoginName">Username</string>
     <string name="no_account_info">No account yet?</string>
     <string name="signup">Signup</string>
+    <string name="logout">Logout</string>
 </resources>

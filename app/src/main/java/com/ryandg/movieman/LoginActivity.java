@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.ryandg.PrefUtils;
 import com.ryandg.android.ViewUtils;
 import com.ryandg.movieman.ui.MainActivity;
 import com.ryandg.movieman.validation.EditTextValidator;
@@ -34,9 +35,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     EditText mInputPassword;
     EditText mInputName;
 
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (PrefUtils.isUserLoggedIn(this)) {
+            launchMainActivity();
+        }
+
         setContentView(R.layout.login_activity);
 
         initInputs();
@@ -81,6 +88,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onIsValidated() {
+        PrefUtils.markUserLoggedIn(true, this);
+        launchMainActivity();
+    }
+
+    private void launchMainActivity() {
         Intent goToMain = new Intent(this, MainActivity.class);
         goToMain.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(goToMain);

@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.ryandg.android.ViewUtils;
 import com.ryandg.movieman.data.MovieManContract;
 import com.ryandg.movieman.data.MovieManDbHelper;
 import com.ryandg.movieman.validation.LoginValidationTask;
@@ -63,6 +64,9 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     private void initInputFields() {
         inputName = (EditText) findViewById(R.id.inputLoginName);
         inputPassword = (EditText) findViewById(R.id.inputPassword);
+
+        ViewUtils.setNoSpacesInputFilter(inputName);
+        ViewUtils.setNoSpacesInputFilter(inputPassword);
     }
 
     @Override
