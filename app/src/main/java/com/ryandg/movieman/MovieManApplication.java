@@ -7,6 +7,7 @@ import android.util.Log;
 
 import com.orhanobut.logger.Logger;
 import com.ryandg.android.ConnectionUtils;
+import com.squareup.leakcanary.LeakCanary;
 
 /**
  * Created by Ryan De Gruyter on 16/05/2015.
@@ -20,10 +21,7 @@ public class MovieManApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        LeakCanary.install(this);
     }
 
-    public static boolean login(String userName, String passWord) {
-
-        return false;
-    }
 }

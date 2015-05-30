@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    android:background="@drawable/splashbg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:gravity="center_vertical">
+
+    <RelativeLayout
+        android:background="@color/whitetrans"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <ImageView
+            android:src="@drawable/moviemanlogo_land"
+            android:layout_width="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_height="wrap_content"
+            android:id="@+id/moviemanLogo" />
+
+        <EditText
+            android:layout_below="@id/moviemanLogo"
+
+            android:id="@+id/inputLoginName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hintLoginName"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/inputPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/inputLoginName"
+            android:hint="@string/hintLoginPassword"
+            android:inputType="textPassword" />
+
+        <Button
+            android:id="@+id/btn_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/inputPassword"
+            android:text="@string/login" />
+
+        <TextView
+            android:id="@+id/lbl_create_account"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/btn_login"
+            android:text="@string/no_account_info"
+            android:gravity="center_horizontal" />
+
+        <Button
+            android:id="@+id/btn_signup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lbl_create_account"
+            android:text="@string/signup" />
+
+    </RelativeLayout>
+</LinearLayout>

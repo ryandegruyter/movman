@@ -26,6 +26,7 @@ public class UserExists extends Rule {
     @Override
     public void validate(String input) throws ValidationException {
         final MovieManDbHelper dbHelper = new MovieManDbHelper(context);
+
         if (!dbHelper.nameExists(input)) {
             throw new ValidationException(ERROR_MSG);
         }

@@ -1,32 +1,33 @@
 package com.ryandg.movieman;
 
+import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.text.InputFilter;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.ryandg.android.ViewUtils;
 import com.ryandg.movieman.validation.EditTextValidator;
 import com.ryandg.movieman.validation.InputValidator;
 import com.ryandg.movieman.validation.InputViewErrors;
+import com.ryandg.movieman.validation.LoginValidationTask;
 import com.ryandg.movieman.validation.rules.Alphanumeric;
 import com.ryandg.movieman.validation.rules.NotEmpty;
 import com.ryandg.movieman.validation.rules.PasswordBelongsToUser;
 import com.ryandg.movieman.validation.rules.RuleList;
 import com.ryandg.movieman.validation.rules.UserExists;
-import com.ryandg.text.NoSpacesInputFilter;
 
 import ryandg.ryandg.movieman.R;
 
 /**
  * Created by Ryan De Gruyter on 17/05/2015.
  */
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener, InputValidator.OnInputValidationListener {
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener, LoginValidationTask.IsValidListener {
 
     private static final String TAG = LoginActivity.class.getSimpleName();
     EditText mInputPassword;
@@ -74,63 +75,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void onLoginButtonClick() {
-        validate();
-    }
-
-    private void validate() {
-        EditTextValidator mInputValidator = new EditTextValidator(this);
-
-        mInputValidator.setRules(getInputNameRuleList());
-        mInputValidator.validate(mInputName);
-
-        mInputValidator.setRules(getInputPasswordRuleList());
-        mInputValidator.validate(mInputPassword);
-
-        if (mInputValidator.isValid()) {
-
-        } else {
-
-        }
+        new LoginValidationTask(this, mInputName, mInputPassword, this).execute();
     }
 
     @Override
-    public void onInputError(InputViewErrors errors) {
-        int viewId = errors.getViewId();
-        switch (viewId) {
-            case R.id.inputLoginName:
-                ViewUtils.setEditTextError(mInputName, errors.getFirstError());
-                break;
-            case R.id.inputPassword:
-                ViewUtils.setEditTextError(mInputPassword, errors.getFirstError());
-        }
-    }
-
-    @Override
-    public void onInputSuccess(int viewId) {
-        switch (viewId) {
-            case R.id.inputLoginName:
-                ViewUtils.setEditTextSuccesfull(mInputPassword);
-                break;
-            case R.id.inputPassword:
-                ViewUtils.setEditTextSuccesfull(mInputName);
-                break;
-        }
-    }
-
-    public RuleList getInputNameRuleList() {
-        RuleList rules = new RuleList();
-        rules.addRule(new NotEmpty());
-        rules.addRule(new Alphanumeric());
-        rules.addRule(new UserExists(this));
-        return rules;
-    }
-
-    public RuleList getInputPasswordRuleList() {
-        final RuleList rules = new RuleList();
-        rules.addRule(new NotEmpty());
-
-        final String loginName = mInputName.getText().toString();
-        rules.addRule(new PasswordBelongsToUser(loginName, this));
-        return rules;
+    public void onIsValidated() {
+        Toast.makeText(this, "LOGIN USER", Toast.LENGTH_SHORT).show();
     }
 }

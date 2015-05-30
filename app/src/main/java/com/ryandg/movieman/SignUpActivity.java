@@ -1,5 +1,7 @@
 package com.ryandg.movieman;
 
+import android.content.ContentValues;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NavUtils;
@@ -12,9 +14,14 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.ryandg.android.ViewUtils;
+import com.ryandg.movieman.db.MovieManContract;
+import com.ryandg.movieman.db.MovieManDbHelper;
+import com.ryandg.movieman.ui.MainActivity;
 import com.ryandg.movieman.validation.EditTextValidator;
 import com.ryandg.movieman.validation.InputValidator;
 import com.ryandg.movieman.validation.InputViewErrors;
+import com.ryandg.movieman.validation.LoginValidationTask;
+import com.ryandg.movieman.validation.SignupValidationTask;
 import com.ryandg.movieman.validation.rules.Alphanumeric;
 import com.ryandg.movieman.validation.rules.NameIsUnique;
 import com.ryandg.movieman.validation.rules.NotEmpty;
@@ -25,7 +32,7 @@ import ryandg.ryandg.movieman.R;
 /**
  * Created by Ryan De Gruyter on 29/05/2015.
  */
-public class SignUpActivity extends AppCompatActivity implements View.OnClickListener, InputValidator.OnInputValidationListener {
+public class SignUpActivity extends AppCompatActivity implements View.OnClickListener, LoginValidationTask.IsValidListener {
     EditText inputName;
     EditText inputPassword;
     Button btnSignUp;
@@ -65,8 +72,8 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private void initInputFields() {
-        inputName = (EditText) findViewById(R.id.inputSignupName);
-        inputPassword = (EditText) findViewById(R.id.inputSignupPassword);
+        inputName = (EditText) findViewById(R.id.inputLoginName);
+        inputPassword = (EditText) findViewById(R.id.inputPassword);
     }
 
     @Override
@@ -79,59 +86,18 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private void onBtnSignUpClick() {
-        validate();
-    }
-
-    private void validate() {
-        EditTextValidator inputValidator = new EditTextValidator(this);
-        inputValidator.setRules(getUserNameRules());
-        inputValidator.validate(inputName);
-
-        inputValidator.setRules(getPassWordRules());
-        inputValidator.validate(inputPassword);
-
-        if (inputValidator.isValid()) {
-//            sign up user
-            Toast.makeText(this, "signup user", Toast.LENGTH_SHORT).show();
-        }
+        new SignupValidationTask(
+                this,
+                inputName,
+                inputPassword,
+                this
+        ).execute();
     }
 
     @Override
-    public void onInputError(InputViewErrors viewErrors) {
-        switch (viewErrors.getViewId()) {
-            case R.id.inputSignupName:
-                ViewUtils.setEditTextError(inputName, viewErrors.getFirstError());
-                break;
-            case R.id.inputSignupPassword:
-                ViewUtils.setEditTextError(inputPassword, viewErrors.getFirstError());
-                break;
-        }
-    }
-
-    @Override
-    public void onInputSuccess(int viewId) {
-        switch (viewId) {
-            case R.id.inputSignupName:
-                ViewUtils.setEditTextSuccesfull(inputName);
-                break;
-            case R.id.inputSignupPassword:
-                ViewUtils.setEditTextSuccesfull(inputPassword);
-                break;
-        }
-    }
-
-    public RuleList getUserNameRules() {
-        final RuleList rules = new RuleList();
-        rules.addRule(new NotEmpty());
-        rules.addRule(new Alphanumeric());
-        rules.addRule(new NameIsUnique(this));
-        return rules;
-    }
-
-
-    public RuleList getPassWordRules() {
-        final RuleList rules = new RuleList();
-        rules.addRule(new NotEmpty());
-        return rules;
+    public void onIsValidated() {
+        final ContentValues user = MovieManDbHelper.createUser(inputName.getText().toString(), inputPassword.getText().toString());
+        getContentResolver().insert(MovieManContract.MovieManUser.CONTENT_URI, user);
+        NavUtils.navigateUpFromSameTask(this);
     }
 }
