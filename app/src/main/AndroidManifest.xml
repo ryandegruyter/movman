@@ -14,6 +14,7 @@
         <activity
             android:name="com.ryandg.movieman.ui.NewsActivity"
             android:parentActivityName="com.ryandg.movieman.ui.MainActivity" />
+        <activity android:name="com.ryandg.movieman.SignUpActivity"></activity>
         <activity android:name="com.ryandg.movieman.LoginActivity">
             <intent-filter>
                 <action android:name="ANDROID.INTENT.ACTION.MAIN" />

@@ -1,7 +1,6 @@
 package com.ryandg.movieman;
 
-import android.graphics.Color;
-import android.graphics.PorterDuff;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -10,13 +9,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.ryandg.android.ViewUtils;
 import com.ryandg.movieman.validation.EditTextValidator;
 import com.ryandg.movieman.validation.InputValidator;
 import com.ryandg.movieman.validation.InputViewErrors;
-import com.ryandg.movieman.validation.rules.PasswordBelongsToUser;
-import com.ryandg.movieman.validation.rules.NotEmpty;
-import com.ryandg.movieman.validation.rules.RuleList;
 import com.ryandg.movieman.validation.rules.Alphanumeric;
+import com.ryandg.movieman.validation.rules.NotEmpty;
+import com.ryandg.movieman.validation.rules.PasswordBelongsToUser;
+import com.ryandg.movieman.validation.rules.RuleList;
 import com.ryandg.movieman.validation.rules.UserExists;
 import com.ryandg.text.NoSpacesInputFilter;
 
@@ -31,8 +31,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     EditText mInputPassword;
     EditText mInputName;
 
-    private InputValidator mInputValidator;
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +38,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         initInputs();
         initLoginButton();
+        initSignUpButton();
+    }
+
+    private void initSignUpButton() {
+        final View btnSignup = findViewById(R.id.btn_signup);
+        btnSignup.setOnClickListener(this);
     }
 
 
@@ -52,16 +56,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         mInputName = (EditText) findViewById(R.id.inputLoginName);
         mInputPassword = (EditText) findViewById(R.id.inputPassword);
 
-        setInputFilters();
-    }
-
-    private void setInputFilters() {
-        InputFilter[] inputFilters = {
-                new NoSpacesInputFilter()
-        };
-
-        mInputName.setFilters(inputFilters);
-        mInputName.setFilters(inputFilters);
+        ViewUtils.setNoSpacesInputFilter(mInputName);
+        ViewUtils.setNoSpacesInputFilter(mInputPassword);
     }
 
     @Override
@@ -69,6 +65,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         switch (v.getId()) {
             case R.id.btn_login:
                 onLoginButtonClick();
+                break;
+            case R.id.btn_signup:
+                startActivity(new Intent(this, SignUpActivity.class));
                 break;
         }
     }
@@ -78,7 +77,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void validate() {
-        mInputValidator = new EditTextValidator(this);
+        EditTextValidator mInputValidator = new EditTextValidator(this);
 
         mInputValidator.setRules(getInputNameRuleList());
         mInputValidator.validate(mInputName);
@@ -98,53 +97,23 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         int viewId = errors.getViewId();
         switch (viewId) {
             case R.id.inputLoginName:
-                onErrorInputLoginName(errors);
+                ViewUtils.setEditTextError(mInputName, errors.getFirstError());
                 break;
             case R.id.inputPassword:
-                onErrorInputPassWord(errors);
+                ViewUtils.setEditTextError(mInputPassword, errors.getFirstError());
         }
-    }
-
-    private void onErrorInputPassWord(InputViewErrors errors) {
-        setEditTextError(mInputPassword, errors.getFirstError());
-    }
-
-    private void onErrorInputLoginName(InputViewErrors errors) {
-        setEditTextError(mInputName, errors.getFirstError());
     }
 
     @Override
     public void onInputSuccess(int viewId) {
         switch (viewId) {
             case R.id.inputLoginName:
-                onSuccessInputLoginName();
+                ViewUtils.setEditTextSuccesfull(mInputPassword);
                 break;
             case R.id.inputPassword:
-                onSuccessInputPassword();
+                ViewUtils.setEditTextSuccesfull(mInputName);
                 break;
         }
-    }
-
-    private void onSuccessInputPassword() {
-        setEditTextSuccesfull(mInputPassword);
-    }
-
-    private void onSuccessInputLoginName() {
-        setEditTextSuccesfull(mInputName);
-    }
-
-    private void setEditTextSuccesfull(EditText editText) {
-        editText.setError(null);
-        setColorFilter(editText, Color.GREEN);
-    }
-
-    private void setEditTextError(EditText editText, String error) {
-        editText.setError(error);
-        setColorFilter(editText, Color.RED);
-    }
-
-    private void setColorFilter(View view, int color) {
-        view.getBackground().setColorFilter(color, PorterDuff.Mode.SRC_IN);
     }
 
     public RuleList getInputNameRuleList() {
