@@ -1,4 +1,4 @@
-package com.ryandg.movieman.db;
+package com.ryandg.movieman.data;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -8,9 +8,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
 
 import com.ryandg.DateUtils;
-import com.ryandg.movieman.MovieManApplication;
 import com.ryandg.movieman.account.AuthenticationException;
-import com.ryandg.movieman.db.MovieManContract.MovieManUser.Columns;
+import com.ryandg.movieman.data.MovieManContract.MovieManUser.Columns;
 import com.ryandg.security.PasswordHash;
 
 import java.security.NoSuchAlgorithmException;
@@ -59,7 +58,7 @@ public class MovieManDbHelper extends SQLiteOpenHelper {
             final String usrPassword = query.getString(query.getColumnIndex(Columns.COL_PASSWORD));
             try {
                 return PasswordHash.validatePassword(passWord, usrPassword);
-            } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
+            } catch (IllegalArgumentException | NoSuchAlgorithmException | InvalidKeySpecException e) {
                 return false;
             }
         }

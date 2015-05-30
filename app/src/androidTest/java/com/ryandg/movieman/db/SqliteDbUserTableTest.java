@@ -1,22 +1,19 @@
-package com.ryandg.movieman.db;
+package com.ryandg.movieman.data;
 
 import android.content.ContentValues;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.test.AndroidTestCase;
 
 import com.ryandg.DateUtils;
-import com.ryandg.movieman.pojo.MovieManUser;
 import com.ryandg.security.PasswordHash;
 
 import org.junit.runner.RunWith;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
-import java.util.Objects;
 
-import static com.ryandg.movieman.db.MovieManDbHelper.createUser;
+import static com.ryandg.movieman.data.MovieManDbHelper.createUser;
 
 /**
  * Created by Ryan De Gruyter on 26/05/2015.

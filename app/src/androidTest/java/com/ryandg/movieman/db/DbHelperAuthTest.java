@@ -1,4 +1,4 @@
-package com.ryandg.movieman.db;
+package com.ryandg.movieman.data;
 
 import android.content.ContentValues;
 import android.test.AndroidTestCase;

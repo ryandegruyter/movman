@@ -1,4 +1,4 @@
-package com.ryandg.movieman.db;
+package com.ryandg.movieman.data;
 
 import android.net.Uri;
 import android.provider.BaseColumns;
@@ -15,7 +15,7 @@ public class MovieManContract {
     public static final Uri BASE_CONTENT_URI = Uri.parse("content://" + CONTENT_AUTHORITY);
 
     public static final class MovieManUser implements BaseColumns {
-        private static final String PATH_USER = "user";
+        public static final String PATH_USER = "user";
         public static final Uri CONTENT_URI =
                 BASE_CONTENT_URI.buildUpon().appendPath(PATH_USER).build();
         public static final String CONTENT_TYPE =

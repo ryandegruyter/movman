@@ -25,6 +25,10 @@
             android:parentActivityName="com.ryandg.movieman.LoginActivity"
             android:name="com.ryandg.movieman.SignUpActivity"/>
 
+        <provider
+            android:authorities="@string/content_authority"
+            android:name="com.ryandg.movieman.data.MovieManProvider"
+            android:exported="false" />
     </application>
 
 </manifest>

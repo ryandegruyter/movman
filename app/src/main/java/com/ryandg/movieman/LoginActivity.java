@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.ryandg.android.ViewUtils;
+import com.ryandg.movieman.ui.MainActivity;
 import com.ryandg.movieman.validation.EditTextValidator;
 import com.ryandg.movieman.validation.InputValidator;
 import com.ryandg.movieman.validation.InputViewErrors;
@@ -80,6 +81,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onIsValidated() {
-        Toast.makeText(this, "LOGIN USER", Toast.LENGTH_SHORT).show();
+        Intent goToMain = new Intent(this, MainActivity.class);
+        goToMain.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(goToMain);
     }
 }

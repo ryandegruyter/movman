@@ -1,7 +1,6 @@
 package com.ryandg.movieman;
 
 import android.content.ContentValues;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NavUtils;
@@ -11,21 +10,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
-import com.ryandg.android.ViewUtils;
-import com.ryandg.movieman.db.MovieManContract;
-import com.ryandg.movieman.db.MovieManDbHelper;
-import com.ryandg.movieman.ui.MainActivity;
-import com.ryandg.movieman.validation.EditTextValidator;
-import com.ryandg.movieman.validation.InputValidator;
-import com.ryandg.movieman.validation.InputViewErrors;
+import com.ryandg.movieman.data.MovieManContract;
+import com.ryandg.movieman.data.MovieManDbHelper;
 import com.ryandg.movieman.validation.LoginValidationTask;
 import com.ryandg.movieman.validation.SignupValidationTask;
-import com.ryandg.movieman.validation.rules.Alphanumeric;
-import com.ryandg.movieman.validation.rules.NameIsUnique;
-import com.ryandg.movieman.validation.rules.NotEmpty;
-import com.ryandg.movieman.validation.rules.RuleList;
 
 import ryandg.ryandg.movieman.R;
 

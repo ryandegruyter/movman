@@ -1,12 +1,10 @@
-package com.ryandg.movieman.db;
+package com.ryandg.movieman.data;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.test.AndroidTestCase;
 
 import com.ryandg.PrefUtils;
-import com.ryandg.movieman.MovieManApplication;
 import com.ryandg.movieman.account.AuthenticationException;
 
 /**

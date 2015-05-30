@@ -1,10 +1,8 @@
 package com.ryandg.movieman.validation.rules;
 
-import android.content.ContentValues;
 import android.content.Context;
 
-import com.ryandg.movieman.account.AuthenticationException;
-import com.ryandg.movieman.db.MovieManDbHelper;
+import com.ryandg.movieman.data.MovieManDbHelper;
 import com.ryandg.movieman.validation.ValidationException;
 
 /**
