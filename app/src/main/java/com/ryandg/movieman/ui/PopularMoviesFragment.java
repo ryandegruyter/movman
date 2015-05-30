@@ -50,8 +50,6 @@ public class PopularMoviesFragment extends TabFragment {
 
         volleySingleton = VolleySingleton.getInstance(getActivity());
         requestQueue = volleySingleton.getRequestQueue();
-        adapterPopularMovies = new AdapterPopularMovies(getActivity());
-        listPopularMoviesView.setAdapter(adapterPopularMovies);
 
         final String url = String.format(TmdbUtils.POPULAR_MOVIES, TmdbKey.API);
 
@@ -91,6 +89,9 @@ public class PopularMoviesFragment extends TabFragment {
 
         listPopularMoviesView = (RecyclerView) view.findViewById(R.id.listPopularMovies);
         listPopularMoviesView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        adapterPopularMovies = new AdapterPopularMovies(getActivity());
+        listPopularMoviesView.setAdapter(adapterPopularMovies);
 
         return view;
     }

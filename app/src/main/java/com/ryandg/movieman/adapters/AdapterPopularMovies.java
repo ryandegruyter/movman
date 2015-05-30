@@ -24,6 +24,7 @@ public class AdapterPopularMovies extends RecyclerView.Adapter<AdapterPopularMov
     private ArrayList<TmdbMovie> mMovieList;
 
     public AdapterPopularMovies(Context context) {
+        mMovieList = new ArrayList<>();
         layoutInflater = layoutInflater.from(context);
     }
 

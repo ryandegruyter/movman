@@ -3,4 +3,5 @@
     <item name="primary" type="color">#9E9E9E</item>
     <item name="primary_dark" type="color">#616161</item>
     <item name="accent" type="color">#FFC107</item>
+    <color name="whitetrans">#cceeeeee</color>
 </resources>

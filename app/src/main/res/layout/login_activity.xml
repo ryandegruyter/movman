@@ -1,48 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    android:orientation="vertical"
+    android:background="@drawable/splashbg"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:gravity="center_vertical">
 
-    <TextView
-        android:id="@+id/lbl_login_info"
-        android:layout_width="match_parent"
+    <RelativeLayout
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@color/whitetrans"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/login_info" />
+        android:padding="8dp">
 
-    <EditText
-        android:id="@+id/inputLoginName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/lbl_login_info"
-        android:hint="@string/hintLoginName"
-        android:inputType="textPersonName" />
+        <ImageView
+            android:id="@+id/moviemanLogo"
+            android:src="@drawable/moviemanlogo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:layout_below="@+id/moviemanLogo"
+            android:id="@+id/inputLoginName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hintLoginName"
+            android:inputType="textPersonName" />
 
-    <EditText
-        android:id="@+id/inputPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/inputLoginName"
-        android:hint="@string/hintLoginPassword"
-        android:inputType="textPassword" />
+        <EditText
+            android:id="@+id/inputPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/inputLoginName"
+            android:hint="@string/hintLoginPassword"
+            android:inputType="textPassword" />
 
-    <Button
-        android:id="@+id/btn_login"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/inputPassword"
-        android:text="@string/login" />
+        <Button
+            android:id="@+id/btn_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/inputPassword"
+            android:text="@string/login" />
 
-    <TextView
-        android:id="@+id/lbl_create_account"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/btn_login"
-        android:text="@string/no_account_info" />
+        <TextView
+            android:id="@+id/lbl_create_account"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/btn_login"
+            android:text="@string/no_account_info"
+            android:gravity="center_horizontal" />
 
-    <Button
-        android:id="@+id/btn_signup"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/lbl_create_account"
-        android:text="@string/signup" />
-</RelativeLayout>
+        <Button
+            android:id="@+id/btn_signup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lbl_create_account"
+            android:text="@string/signup" />
+    </RelativeLayout>
+</LinearLayout>
